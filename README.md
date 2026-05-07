@@ -1,4 +1,4 @@
-FİTLİFE PRO
+FitLifePRO
 
 FitLifePRO nun amacı sağlıklı bir yaşam. İçerisindeki program oluşturma, diyet tarifler, antrenmanlar, vb özellkiler sayesinde fit  kalmayı sağlıklı kalmayı sağlıyor.
 

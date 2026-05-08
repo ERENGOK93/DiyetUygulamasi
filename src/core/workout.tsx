@@ -54,7 +54,7 @@ export default function WorkoutScreen() {
 
   return (
     <ImageBackground
-      source={require("../assets/images/antrenman_bg.png")}
+      source={require("../../assets/images/antrenman_bg.png")}
       style={styles.background}
       resizeMode="cover"
     >
@@ -92,7 +92,7 @@ export default function WorkoutScreen() {
 }
 
 const styles = StyleSheet.create({
-  background: { flex: 1 },
+  background: { flex: 1, width: '100%', height: '100%' },
   overlay: { flex: 1, backgroundColor: "rgba(10, 17, 40, 0.65)" },
   scrollContent: { padding: 20, paddingTop: 60, paddingBottom: 40 },
   headerTitle: {

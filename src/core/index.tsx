@@ -63,7 +63,7 @@ export default function MainMenuScreen() {
 
   return (
     <ImageBackground
-      source={require("../assets/images/ana_menu_bg.png")}
+      source={require("../../assets/images/ana_menu_bg.png")}
       style={styles.background}
       resizeMode="cover"
     >
@@ -76,7 +76,7 @@ export default function MainMenuScreen() {
           {/* Maskot & konuşma balonu */}
           <View style={styles.mascotContainer}>
             <Image
-              source={require("../assets/images/ana_menu_ikon.png")}
+              source={require("../../assets/images/ana_menu_ikon.png")}
               style={styles.mascotImage}
               resizeMode="contain"
             />
@@ -141,7 +141,7 @@ export default function MainMenuScreen() {
 }
 
 const styles = StyleSheet.create({
-  background:    { flex: 1 },
+  background:    { flex: 1, width: '100%', height: '100%' },
   overlay:       { flex: 1, backgroundColor: "rgba(10, 17, 40, 0.58)" },
   scrollContent: { padding: 20, paddingTop: 60, paddingBottom: 40 },
   header:        { marginBottom: 16 },

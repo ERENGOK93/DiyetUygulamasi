@@ -17,6 +17,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useAuth } from "../services/AuthContext";
 import { ActivityLog } from "../modules/ActivityLog";
 import { getActivityHistory, getUserProfile, updateUserProfile } from "../data/profileData";
 
@@ -52,6 +53,8 @@ function getVKIColor(vki: number): string {
 export default function ProfileScreen() {
   const profile        = getUserProfile();
   const activityHistory: ActivityLog[] = getActivityHistory();
+  
+  const { logout } = useAuth();
 
   // Yerel state — profil getter'larından başlatılır
   const [name,   setName]   = useState(profile.name);
@@ -93,10 +96,18 @@ export default function ProfileScreen() {
 
   return (
     <ImageBackground
-      source={require("../assets/images/maskot.png")}
+      source={require("../../assets/images/maskot.png")}
       style={styles.background}
+      resizeMode="cover"
     >
       <View style={styles.overlay}>
+        
+        {/* SAĞ ÜST SABİT ÇIKIŞ BUTONU */}
+        <TouchableOpacity style={styles.logoutFloatBtn} onPress={logout}>
+          <FontAwesome name="sign-out" size={16} color="#ff4444" />
+          <Text style={styles.logoutFloatText}>Çıkış Yap</Text>
+        </TouchableOpacity>
+
         <ScrollView contentContainerStyle={styles.scrollContent}>
 
           {/* Profil başlık */}
@@ -267,9 +278,9 @@ export default function ProfileScreen() {
 }
 
 const styles = StyleSheet.create({
-  background:    { flex: 1, resizeMode: "cover" },
+  background:    { flex: 1, width: '100%', height: '100%' },
   overlay:       { flex: 1, backgroundColor: "rgba(10, 17, 40, 0.82)" },
-  scrollContent: { padding: 20, paddingTop: 60, paddingBottom: 40 },
+  scrollContent: { padding: 20, paddingTop: 80, paddingBottom: 40 }, // Üst boşluğu buton için biraz arttırdım
 
   header:            { alignItems: "center", marginBottom: 22 },
   avatarPlaceholder: { width: 90, height: 90, borderRadius: 45, backgroundColor: "#D4AF37", justifyContent: "center", alignItems: "center", marginBottom: 12 },
@@ -328,4 +339,26 @@ const styles = StyleSheet.create({
   saveBtnText:   { color: "#0A1128", fontWeight: "bold", fontSize: 16 },
   cancelBtn:     { paddingVertical: 12, alignItems: "center", marginTop: 6 },
   cancelBtnText: { color: "#888", fontSize: 14 },
+
+  // Sabit Çıkış Butonu Stilleri
+  logoutFloatBtn: {
+    position: 'absolute',
+    top: 55, 
+    right: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255, 68, 68, 0.15)',
+    paddingVertical: 8,
+    paddingHorizontal: 14,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#ff4444',
+    zIndex: 999, 
+  },
+  logoutFloatText: {
+    color: '#ff4444',
+    fontWeight: 'bold',
+    marginLeft: 6,
+    fontSize: 13,
+  },
 });

@@ -3,25 +3,29 @@
 // Kullanıcı profili singleton ve aktivite geçmişi.
 // ============================================================
 
-import { ActivityLog } from "../modules/ActivityLog"; // ✅
-import { UserProfile } from "../modules/UserProfile"; // ✅
+import { ActivityLog } from "../modules/ActivityLog";
+import { UserProfile } from "../modules/UserProfile";
 
 // ---- Singleton kullanıcı profili ----
+// Varsayılan değerleri boş/sıfır başlattık ki kayıt verileri üzerine yazılsın.
 let userProfileInstance: UserProfile = new UserProfile(
   1,
-  "Eren",
-  19,
-  178,
-  78.5,
+  "",    // name (kayıtta dolacak)
+  0,     // age
+  0,     // heightCm
+  0,     // weightKg
 );
 
+/**
+ * Mevcut profil nesnesini döndürür.
+ */
 export function getUserProfile(): UserProfile {
   return userProfileInstance;
 }
 
 /**
- * Kullanıcı isim, yaş, boy ve kilo güncelleyebilir.
- * Hedef otomatik olarak VKİ'den hesaplanır.
+ * Kullanıcı kayıt olurken veya bilgilerini güncellerken çağrılır.
+ * Bu sayede uygulama genelinde isim, boy ve kilo dinamik hale gelir.
  */
 export function updateUserProfile(
   name: string,
@@ -35,6 +39,9 @@ export function updateUserProfile(
   userProfileInstance.weightKg = weightKg;
 }
 
+/**
+ * Profil sayfasında görünen örnek aktivite geçmişi.
+ */
 export function getActivityHistory(): ActivityLog[] {
   return [
     new ActivityLog(
@@ -47,7 +54,7 @@ export function getActivityHistory(): ActivityLog[] {
     new ActivityLog(
       2,
       "Yeni Kilo Girişi",
-      "Güncel kilo: 78.5 kg",
+      `Güncel kilo: ${userProfileInstance.weightKg} kg`,
       "Dün, 09:15",
       "line-chart",
     ),

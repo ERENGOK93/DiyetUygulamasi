@@ -88,7 +88,7 @@ export default function ProgramScreen() {
 
   return (
     <ImageBackground
-      source={require("../assets/images/program_bg.png")}
+      source={require("../../assets/images/program_bg.png")}
       style={styles.background}
       resizeMode="cover"
     >
@@ -113,7 +113,7 @@ export default function ProgramScreen() {
 }
 
 const styles = StyleSheet.create({
-  background: { flex: 1, resizeMode: "cover" },
+  background: { flex: 1, width: '100%', height: '100%' },
   overlay: { flex: 1, backgroundColor: "rgba(10, 17, 40, 0.50)" },
   scrollContent: { padding: 20, paddingTop: 60, paddingBottom: 40 },
   headerTitle: {
